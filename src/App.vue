@@ -1,28 +1,40 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <Navbar />
+    <div class="container">
+      <Header />
+      <MainForm />
+      <b-card-group deck id="content">
+        <Article v-for="(article, index) in articles" :key="index"/>
+      </b-card-group>
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Navbar from './components/Navbar.vue'
+import Header from './components/Header.vue'
+import MainForm from './components/MainForm.vue'
+import Article from './components/Article.vue'
 
 export default {
-  name: 'app',
+  name: 'charlie',
   components: {
-    HelloWorld
+    Navbar,
+    Header,
+    MainForm,
+    Article
+  },
+  data() {
+    return {
+      articles: new Array(8)
+    };
   }
 }
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style scoped>
+  #content {
+    margin-top: 20px;
+  }
 </style>
